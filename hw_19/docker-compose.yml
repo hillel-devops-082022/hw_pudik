@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+    frontend:
+        build: ./frontend
+        image: pudinny/hillel-frontend:0.0.1
+        ports:
+            - "8080:80"
+        networks:
+            - public
+    backend:
+        build: ./backend
+        image: pudinny/hillel-backend:0.0.1
+        depends_on:
+            - mongo
+        environment:
+            PORT: '8081'
+            NODE_ENV: 'production'
+            MONGO_DB_URI: 'mongodb://mongo/conduit'
+            SECRET: 'secret'
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://backend:8081/api/status"]
+            interval: 10m
+            timeout: 10s
+            retries: 3
+        ports:
+            - 8081:8081
+        restart: on-failure
+        networks:
+            - public
+            - private
+    mongo:
+        image: mongo:latest
+        expose:
+            - 27017
+        restart: on-failure
+        volumes:
+            - data:/data/db
+        networks:
+            - private
+            
+volumes:
+    data:
+networks:
+    private:
+    public:

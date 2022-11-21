@@ -32,7 +32,7 @@ services:
 ```docker swarm init```
 4. Please check the Nodes on you machine
 ```docker node ls``` 
-5 Now you can run the docker swarm Real World application
+5. Now you can run the docker swarm Real World application
 ```
 docker stack deploy -c docker-compose.yml -c docker-compose.stack.yml realworld
 ```

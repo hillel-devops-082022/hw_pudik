@@ -20,11 +20,11 @@ services:
             NODE_ENV: 'production'
             MONGO_DB_URI: 'mongodb://mongo/conduit'
             SECRET: 'secret'
-        healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:8081/api/status"]
-            interval: 10m
-            timeout: 10s
-            retries: 3
+#       healthcheck:
+#            test: ["CMD", "curl", "-f", "http://localhost:8081/api/status"]
+#            interval: 10m
+#            timeout: 10s
+#            retries: 3
         ports:
             - 8081:8081
         restart: on-failure

@@ -1,7 +1,7 @@
 provider "aws" {
 	region = var.aws_region
-	shared_config_files      = ["/c/Users/pudik/.aws/config"]
-	shared_credentials_files = ["/c/Users/pudik/.aws/credentials"]
+	shared_credentials_file = "$HOME/.aws/credentials"
+  	profile = "default"
 }
 
 variable "aws_region" {

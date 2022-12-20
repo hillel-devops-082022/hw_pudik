@@ -69,7 +69,7 @@ resource "aws_instance" "srv" {
   count         = var.instance_count
   tags          = var.tags
   # Ваш aws key_pair
-  key_name               = "aws_hillel"
+  key_name      = "my-aws-key-pair"
   vpc_security_group_ids = [aws_security_group.web.id]
 }
 

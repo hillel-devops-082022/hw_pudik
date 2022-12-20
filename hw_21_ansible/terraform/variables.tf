@@ -21,5 +21,5 @@ variable "tags" {
 variable "private_key_path" {
   type        = string
   description = "Path to SSH private key"
-  default     = "~/.ssh/id_ed25519"
+  default     = "./my-aws-key-pair.pem"
 }

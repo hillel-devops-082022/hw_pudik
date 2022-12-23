@@ -43,6 +43,7 @@
         delete: yes
         rsync_opts:
           - "--no-motd"
+      tags: deploy
     - name: Apply Nginx template
       template:
         src: files/nginx/default.j2

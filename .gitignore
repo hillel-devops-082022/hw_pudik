@@ -38,3 +38,9 @@ terraform.rc
 
 #Ignore key files and private keys
 *.pem
+
+# General Vagrant
+.vagrant/
+
+# Log files (if you are creating logs in debug mode, uncomment this)
+*.log

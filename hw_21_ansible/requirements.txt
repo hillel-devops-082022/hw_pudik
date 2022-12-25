@@ -1,1 +1,5 @@
+pipenv
 ansible==2.10
+molecule
+molecule-vagrant
+pytest-testinfra

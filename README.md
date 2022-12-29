@@ -45,7 +45,7 @@ docker stack deploy -c docker-compose.yml -c docker-compose.stack.yml realworld
 #### Run code:
 - Start minikube cluster
   ````bash
-  minikube start -p first-cluster # start cluster
+  minikube start  --no-vtx-check -p first-cluster # start cluster
   minikube addons enable csi-hostpath-driver -p first-cluster # enable csi StorageClass
   minikube addons enable ingress -p first-cluster # enable ingress Controller
   ````
@@ -61,27 +61,27 @@ docker stack deploy -c docker-compose.yml -c docker-compose.stack.yml realworld
   ````
 - Deploy mongoDB
   ````bash
-  kubectl apply -f k8s/mongodb/pvc_mongo.yml # create PersistentVolumesClaims for future mongodb pods
-  kubectl apply -f k8s/mongodb/statefulset_mongo.yml # deploy mongodb
-  kubectl apply -f k8s/mongodb/svc_mongo.yml # create service for mongodb
+  kubectl apply -f pvc_mongo.yml # create PersistentVolumesClaims for future mongodb pods
+  kubectl apply -f statefulset_mongo.yml # deploy mongodb
+  kubectl apply -f svc_mongo.yml # create service for mongodb
   ````
 - Deploy backend
   ````bash
-  kubectl apply -f k8s/backend/deployment-backend.yml # deploy backend
-  kubectl apply -f k8s/backend/svc_backend.yml # create service for backend
-  kubectl apply -f k8s/backend/ingress_backend.yml # create ingress for backend to make it reachable from the outside of cluster
+  kubectl apply -f deployment-backend.yml # deploy backend
+  kubectl apply -f svc_backend.yml # create service for backend
+  kubectl apply -f ingress_backend.yml # create ingress for backend to make it reachable from the outside of cluster
   ````
 - Deploy frontend
   ````bash
-  kubectl apply -f k8s/frontend/deployment-frontend.yml # deploy frontend
-  kubectl apply -f k8s/frontend/svc_frontend.yml # create service for frontend
-  kubectl apply -f k8s/frontend/ingress_frontend.yml # create ingress for frontend to make it reachable from the outside of cluster
+  kubectl apply -f deployment-frontend.yml # deploy frontend
+  kubectl apply -f svc_frontend.yml # create service for frontend
+  kubectl apply -f ingress_frontend.yml # create ingress for frontend to make it reachable from the outside of cluster
   ````
 - Deploy mongo-admin
   ````bash
-  kubectl apply -f k8s/mongo_admin/statefulset_mongo_admin.yml # deploy mongo_admin
-  kubectl apply -f k8s/mongo_admin/svc_mongo_admin.yml # create service for mongo_admin
-  kubectl apply -f k8s/mongo_admin/ingress_mongo_admin.yml # create ingress for mongo_admin to make it reachable from the outside of cluster
+  kubectl apply -f statefulset_mongo_admin.yml # deploy mongo_admin
+  kubectl apply -f svc_mongo_admin.yml # create service for mongo_admin
+  kubectl apply -f ingress_mongo_admin.yml # create ingress for mongo_admin to make it reachable from the outside of cluster
   ````
 
 #### Verify
@@ -92,10 +92,10 @@ docker stack deploy -c docker-compose.yml -c docker-compose.stack.yml realworld
 #### Stop code:
 - Remove all created resources
   ````bash
-  kubectl delete -f k8s/mongo_admin
-  kubectl delete -f k8s/frontend
-  kubectl delete -f k8s/backend
-  kubectl delete -f k8s/mongodb
+  kubectl delete -f mongo_admin
+  kubectl delete -f frontend
+  kubectl delete -f backend
+  kubectl delete -f mongodb
   ````
 - Remove DNS-records from hosts file
   ````bash
